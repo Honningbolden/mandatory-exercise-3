@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "chitchat/grpc";
+
+package chitchat;
+
+service Chat {
+    Message (MessageRequest) returns (MessageReply) 
+}
+
+message Nothing {}
+
+message Message {
+    string username = 1;
+    string content = 2;
+}
+
+message Messages {
+    repeated Message messages = 1;
+}
+
+service ChitChatService {
+    rpc GetMessages(Nothing) returns (Messages);
+    rpc SendMessage(Message) returns (Messages);
+}
