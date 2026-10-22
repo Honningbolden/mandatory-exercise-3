@@ -1,34 +1,23 @@
+syntax = "proto3";
 package chitchat;
 
-syntax = "proto3";
 option go_package = "chitchat/grpc";
 
 message Nothing {}
 
-message ConnectRequest {
-    string username = 1;
-}
-
-// Each user must have a username and a userId
 message User {
     string username = 1;
-    int32 userId = 2;
 }
 
-message Users {
-    repeated User users = 1;
-}
-
-// Message for all server messages 
+// Message for all server messages
 message Message {
-    User user = 1;
+    string sender = 1;
     string content = 2;
-    string timestamp = 3;
+    int64 timestamp = 3;
 }
 
 service ChitChatService {
-    rpc GetMessage(Nothing) returns (Message);
     rpc PostMessage(Message) returns (Nothing);
-    rpc Connect(ConnectRequest) returns (stream Message);
+    rpc Connect(User) returns (stream Message); // a stream is kinda like a channel but for outside programs
     rpc Disconnect(User) returns (Nothing);
 }
