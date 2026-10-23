@@ -1,0 +1,14 @@
+[Server] 2026/10/23 15:07:24.001000 @ %d is live 0
+[Server] 2026/10/23 15:07:24.061101 event=STARTUP addr=localhost:5050 lamport=0
+[Server] 2026/10/23 15:16:36.169773 @ %d is live 0
+[Server] 2026/10/23 15:16:36.198210 event=STARTUP addr=localhost:5050 lamport=0
+[Server] 2026/10/23 15:17:32.987857 event=SEND to=bob from=Server lamport=1 msg="bob joined the chat"
+[Server] 2026/10/23 15:18:04.933550 event=SEND to=alice from=Server lamport=2 msg="alice joined the chat"
+[Server] 2026/10/23 15:18:04.933602 event=SEND to=bob from=Server lamport=2 msg="alice joined the chat"
+[Server] 2026/10/23 15:18:08.590423 event=RECEIVE from=alice lamport=2 msg="hej"
+[Server] 2026/10/23 15:18:08.590593 event=BROADCAST from=alice lamport=2
+[Server] 2026/10/23 15:18:08.591116 event=SEND to=bob from=alice lamport=2 msg="hej"
+[Server] 2026/10/23 15:18:18.126791 event=RECEIVE from=bob lamport=2 msg="penisman"
+[Server] 2026/10/23 15:18:18.127047 event=BROADCAST from=bob lamport=2
+[Server] 2026/10/23 15:18:18.127159 event=SEND to=alice from=bob lamport=2 msg="penisman"
+[Server] 2026/10/23 15:21:27.702291 event=SEND to=alice from=Server lamport=3 msg="bob left the chat"

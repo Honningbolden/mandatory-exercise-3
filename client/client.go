@@ -15,10 +15,10 @@ import (
 )
 
 type Client struct {
-    name    string
-    clock   int64
-    mu      sync.Mutex
-    service pb.ChitChatServiceClient
+	name    string
+	clock   int64
+	mu      sync.Mutex
+	service pb.ChitChatServiceClient
 }
 
 // receives messages from the server until the stream closes
@@ -40,22 +40,24 @@ func (c *Client) receive(stream pb.ChitChatService_ConnectClient) {
 }
 
 func (c *Client) send(text string) {
-    c.mu.Lock()
-    c.clock++
-    ts := c.clock
-    c.mu.Unlock()
+	c.mu.Lock()
+	c.clock++
+	ts := c.clock
+	c.mu.Unlock()
 
-    _, err := c.service.PostMessage(context.Background(), &pb.Message{
-        Sender:    c.name,
-        Content:   text,
-        Timestamp: ts,
-    })
-    if err != nil {
-        log.Println("failed to send:", err)
-    }
+	_, err := c.service.PostMessage(context.Background(), &pb.Message{
+		Sender:    c.name,
+		Content:   text,
+		Timestamp: ts,
+	})
+	if err != nil {
+		log.Println("failed to send:", err)
+	}
 }
 
 func main() {
+
+	//TODO: Create a logging system for the client side
 	// pick the username when starting: ex. go run . alice
 	if len(os.Args) < 2 {
 		log.Fatal("usage: go run . <username>")
@@ -81,6 +83,6 @@ func main() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-    	c.send(scanner.Text())
+		c.send(scanner.Text())
 	}
 }
