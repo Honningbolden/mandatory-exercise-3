@@ -1,14 +1,69 @@
-[Server] 2026/10/23 15:07:24.001000 @ %d is live 0
-[Server] 2026/10/23 15:07:24.061101 event=STARTUP addr=localhost:5050 lamport=0
-[Server] 2026/10/23 15:16:36.169773 @ %d is live 0
-[Server] 2026/10/23 15:16:36.198210 event=STARTUP addr=localhost:5050 lamport=0
-[Server] 2026/10/23 15:17:32.987857 event=SEND to=bob from=Server lamport=1 msg="bob joined the chat"
-[Server] 2026/10/23 15:18:04.933550 event=SEND to=alice from=Server lamport=2 msg="alice joined the chat"
-[Server] 2026/10/23 15:18:04.933602 event=SEND to=bob from=Server lamport=2 msg="alice joined the chat"
-[Server] 2026/10/23 15:18:08.590423 event=RECEIVE from=alice lamport=2 msg="hej"
-[Server] 2026/10/23 15:18:08.590593 event=BROADCAST from=alice lamport=2
-[Server] 2026/10/23 15:18:08.591116 event=SEND to=bob from=alice lamport=2 msg="hej"
-[Server] 2026/10/23 15:18:18.126791 event=RECEIVE from=bob lamport=2 msg="penisman"
-[Server] 2026/10/23 15:18:18.127047 event=BROADCAST from=bob lamport=2
-[Server] 2026/10/23 15:18:18.127159 event=SEND to=alice from=bob lamport=2 msg="penisman"
-[Server] 2026/10/23 15:21:27.702291 event=SEND to=alice from=Server lamport=3 msg="bob left the chat"
+[Server] 2026/10/24 23:43:19.018486 event=STARTUP addr=localhost:5050 lamport=0
+[Server] 2026/10/24 23:43:28.738709 event=CONNECT client=alice lamport=2
+[Server] 2026/10/24 23:43:28.738772 event=BROADCAST kind=JOIN client=alice lamport=2
+[Server] 2026/10/24 23:43:28.738802 event=SEND to=alice from=Server lamport=2 msg="Participant alice joined Chit Chat at logical time 2"
+[Server] 2026/10/24 23:43:36.455280 event=CONNECT client=bob lamport=3
+[Server] 2026/10/24 23:43:36.455330 event=BROADCAST kind=JOIN client=bob lamport=3
+[Server] 2026/10/24 23:43:36.455347 event=SEND to=bob from=Server lamport=3 msg="Participant bob joined Chit Chat at logical time 3"
+[Server] 2026/10/24 23:43:36.455347 event=SEND to=alice from=Server lamport=3 msg="Participant bob joined Chit Chat at logical time 3"
+[Server] 2026/10/24 23:43:47.344503 event=CONNECT client=mikkel lamport=4
+[Server] 2026/10/24 23:43:47.344563 event=BROADCAST kind=JOIN client=mikkel lamport=4
+[Server] 2026/10/24 23:43:47.344582 event=SEND to=mikkel from=Server lamport=4 msg="Participant mikkel joined Chit Chat at logical time 4"
+[Server] 2026/10/24 23:43:47.344581 event=SEND to=alice from=Server lamport=4 msg="Participant mikkel joined Chit Chat at logical time 4"
+[Server] 2026/10/24 23:43:47.344586 event=SEND to=bob from=Server lamport=4 msg="Participant mikkel joined Chit Chat at logical time 4"
+[Server] 2026/10/24 23:44:02.104891 event=RECEIVE from=alice lamport=7 msg="Hello I'm alice!"
+[Server] 2026/10/24 23:44:02.104963 event=BROADCAST kind=MESSAGE client=alice lamport=7
+[Server] 2026/10/24 23:44:02.105022 event=SEND to=alice from=alice lamport=7 msg="Hello I'm alice!"
+[Server] 2026/10/24 23:44:02.105032 event=SEND to=bob from=alice lamport=7 msg="Hello I'm alice!"
+[Server] 2026/10/24 23:44:02.105037 event=SEND to=mikkel from=alice lamport=7 msg="Hello I'm alice!"
+[Server] 2026/10/24 23:44:09.010358 event=RECEIVE from=bob lamport=10 msg="Hi! I'm bob"
+[Server] 2026/10/24 23:44:09.010454 event=BROADCAST kind=MESSAGE client=bob lamport=10
+[Server] 2026/10/24 23:44:09.010518 event=SEND to=alice from=bob lamport=10 msg="Hi! I'm bob"
+[Server] 2026/10/24 23:44:09.010557 event=SEND to=bob from=bob lamport=10 msg="Hi! I'm bob"
+[Server] 2026/10/24 23:44:09.010516 event=SEND to=mikkel from=bob lamport=10 msg="Hi! I'm bob"
+[Server] 2026/10/24 23:44:12.874177 event=RECEIVE from=mikkel lamport=13 msg="I'm Mikkel"
+[Server] 2026/10/24 23:44:12.874269 event=BROADCAST kind=MESSAGE client=mikkel lamport=13
+[Server] 2026/10/24 23:44:12.874312 event=SEND to=mikkel from=mikkel lamport=13 msg="I'm Mikkel"
+[Server] 2026/10/24 23:44:12.874340 event=SEND to=alice from=mikkel lamport=13 msg="I'm Mikkel"
+[Server] 2026/10/24 23:44:12.874330 event=SEND to=bob from=mikkel lamport=13 msg="I'm Mikkel"
+[Server] 2026/10/24 23:44:15.260879 event=RECEIVE from=mikkel lamport=16 msg="Mikkel!!"
+[Server] 2026/10/24 23:44:15.260948 event=BROADCAST kind=MESSAGE client=mikkel lamport=16
+[Server] 2026/10/24 23:44:15.260966 event=SEND to=alice from=mikkel lamport=16 msg="Mikkel!!"
+[Server] 2026/10/24 23:44:15.260980 event=SEND to=bob from=mikkel lamport=16 msg="Mikkel!!"
+[Server] 2026/10/24 23:44:15.260985 event=SEND to=mikkel from=mikkel lamport=16 msg="Mikkel!!"
+[Server] 2026/10/24 23:44:27.296589 event=RECEIVE from=bob lamport=19 msg="Hello Mikkel. Omg it's sooo nice to meet youu"
+[Server] 2026/10/24 23:44:27.296628 event=BROADCAST kind=MESSAGE client=bob lamport=19
+[Server] 2026/10/24 23:44:27.296710 event=SEND to=alice from=bob lamport=19 msg="Hello Mikkel. Omg it's sooo nice to meet youu"
+[Server] 2026/10/24 23:44:27.296656 event=SEND to=bob from=bob lamport=19 msg="Hello Mikkel. Omg it's sooo nice to meet youu"
+[Server] 2026/10/24 23:44:27.296716 event=SEND to=mikkel from=bob lamport=19 msg="Hello Mikkel. Omg it's sooo nice to meet youu"
+[Server] 2026/10/24 23:44:33.177027 event=RECEIVE from=alice lamport=22 msg="Tihi this is working very well"
+[Server] 2026/10/24 23:44:33.177088 event=BROADCAST kind=MESSAGE client=alice lamport=22
+[Server] 2026/10/24 23:44:33.177099 event=SEND to=alice from=alice lamport=22 msg="Tihi this is working very well"
+[Server] 2026/10/24 23:44:33.177107 event=SEND to=mikkel from=alice lamport=22 msg="Tihi this is working very well"
+[Server] 2026/10/24 23:44:33.177106 event=SEND to=bob from=alice lamport=22 msg="Tihi this is working very well"
+[Server] 2026/10/24 23:44:35.318824 event=RECEIVE from=alice lamport=25 msg="Very cool"
+[Server] 2026/10/24 23:44:35.318877 event=BROADCAST kind=MESSAGE client=alice lamport=25
+[Server] 2026/10/24 23:44:35.318904 event=SEND to=mikkel from=alice lamport=25 msg="Very cool"
+[Server] 2026/10/24 23:44:35.318925 event=SEND to=bob from=alice lamport=25 msg="Very cool"
+[Server] 2026/10/24 23:44:35.318932 event=SEND to=alice from=alice lamport=25 msg="Very cool"
+[Server] 2026/10/24 23:44:40.615790 event=RECEIVE from=bob lamport=28 msg="Indeed. Tres cool"
+[Server] 2026/10/24 23:44:40.615817 event=BROADCAST kind=MESSAGE client=bob lamport=28
+[Server] 2026/10/24 23:44:40.615833 event=SEND to=alice from=bob lamport=28 msg="Indeed. Tres cool"
+[Server] 2026/10/24 23:44:40.615845 event=SEND to=bob from=bob lamport=28 msg="Indeed. Tres cool"
+[Server] 2026/10/24 23:44:40.615847 event=SEND to=mikkel from=bob lamport=28 msg="Indeed. Tres cool"
+[Server] 2026/10/24 23:44:46.451360 event=RECEIVE from=mikkel lamport=31 msg="Yaaas "
+[Server] 2026/10/24 23:44:46.451387 event=BROADCAST kind=MESSAGE client=mikkel lamport=31
+[Server] 2026/10/24 23:44:46.451402 event=SEND to=bob from=mikkel lamport=31 msg="Yaaas "
+[Server] 2026/10/24 23:44:46.451413 event=SEND to=mikkel from=mikkel lamport=31 msg="Yaaas "
+[Server] 2026/10/24 23:44:46.451416 event=SEND to=alice from=mikkel lamport=31 msg="Yaaas "
+[Server] 2026/10/24 23:44:49.268752 event=DISCONNECT client=mikkel lamport=32
+[Server] 2026/10/24 23:44:49.268810 event=BROADCAST kind=LEAVE client=mikkel lamport=32
+[Server] 2026/10/24 23:44:49.268832 event=SEND to=bob from=Server lamport=32 msg="Participant mikkel left Chit Chat at logical time 32"
+[Server] 2026/10/24 23:44:49.268828 event=SEND to=alice from=Server lamport=32 msg="Participant mikkel left Chit Chat at logical time 32"
+[Server] 2026/10/24 23:44:52.406155 event=DISCONNECT client=bob lamport=33
+[Server] 2026/10/24 23:44:52.406206 event=BROADCAST kind=LEAVE client=bob lamport=33
+[Server] 2026/10/24 23:44:52.406246 event=SEND to=alice from=Server lamport=33 msg="Participant bob left Chit Chat at logical time 33"
+[Server] 2026/10/24 23:44:54.939608 event=DISCONNECT client=alice lamport=34
+[Server] 2026/10/24 23:44:54.939669 event=BROADCAST kind=LEAVE client=alice lamport=34
+[Server] 2026/10/24 23:44:58.841439 event=SHUTDOWN addr=localhost:5050 lamport=35
+[Server] 2026/10/24 23:44:58.841896 event=STOPPED
