@@ -58,7 +58,7 @@ func (s *Server) Connect(req *pb.User, stream pb.ChitChatService_ConnectServer) 
 	for {
 		select {
 		case msg, ok := <-ch: // if a message is on the user channale send it to the clients through the stream
-			if !ok { // channel closed by removeClient (Disconnect was called)
+			if !ok { // channel closed by removeClient
 				return nil
 			}
 			if err := stream.Send(msg); err != nil { // return error if something went wrong (stream.Send can only return an error)
