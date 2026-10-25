@@ -1,6 +1,6 @@
 # Mandatory Exersice 3
-Mikkel Hedeggard <mivh@itu.dk>
-Hanibal Munk  <hmuk@itu.dk>
+Mikkel Vincent Hedeggard <mivh@itu.dk>
+Hannibal Marcellus Munk  <hmun@itu.dk>
 Abdhalla Jawher Alhamedi <aalh@itu.dk>
 
 Github: https://github.com/Honningbolden/mandatory-exercise-3
