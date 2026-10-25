@@ -57,7 +57,10 @@ func (s *Server) Connect(req *pb.User, stream pb.ChitChatService_ConnectServer) 
 	// loops forever
 	for {
 		select {
-		case msg := <-ch: // if a message is on the user channale send it to the clients through the stream
+		case msg, ok := <-ch: // if a message is on the user channale send it to the clients through the stream
+			if !ok { // channel closed by removeClient (Disconnect was called)
+				return nil
+			}
 			if err := stream.Send(msg); err != nil { // return error if something went wrong (stream.Send can only return an error)
 				log.Printf("event=SEND_FAILED to=%s from=%s err=%v", username, msg.Sender, err)
 				return err
@@ -67,7 +70,6 @@ func (s *Server) Connect(req *pb.User, stream pb.ChitChatService_ConnectServer) 
 			return nil
 		}
 	}
-
 }
 
 func (s *Server) PostMessage(ctx context.Context, msg *pb.Message) (*pb.Nothing, error) {
@@ -88,20 +90,33 @@ func (s *Server) PostMessage(ctx context.Context, msg *pb.Message) (*pb.Nothing,
 }
 
 func (s *Server) Disconnect(ctx context.Context, user *pb.User) (*pb.Nothing, error) {
-	s.mu.Lock()
-	delete(s.clients, user.Username)
-	s.mu.Unlock()
-	ts := s.tick(user.Timestamp)
-	log.Printf("event=DISCONNECT client=%s lamport=%d", user.Username, ts)
+	s.removeClient(user.Username, user.Timestamp)
+	return &pb.Nothing{}, nil
+}
 
+// only removes the client
+func (s *Server) removeClient(username string, receivedClock int64) {
+	s.mu.Lock()
+	c, ok := s.clients[username]
+	if ok {
+		delete(s.clients, username) // remove from map
+		close(c)                    // closes the users channale and stopes the loop in conect
+	}
+	s.mu.Unlock()
+
+	if !ok {
+		return // already removed, don't broadcast a second leave
+	}
+
+	// move clock, broadcast, log
+	ts := s.tick(receivedClock)
+	log.Printf("event=DISCONNECT client=%s lamport=%d", username, ts)
 	s.broadcast(&pb.Message{
 		Sender:    "Server",
-		Content:   fmt.Sprintf("Participant %s left Chit Chat at logical time %d", user.Username, ts),
+		Content:   fmt.Sprintf("Participant %s left Chit Chat at logical time %d", username, ts),
 		Timestamp: ts,
 	})
-	log.Printf("event=BROADCAST kind=LEAVE client=%s lamport=%d", user.Username, ts)
-
-	return &pb.Nothing{}, nil
+	log.Printf("event=BROADCAST kind=LEAVE client=%s lamport=%d", username, ts)
 }
 
 // brodsastes a message to all conected clients stream
