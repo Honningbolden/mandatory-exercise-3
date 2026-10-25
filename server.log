@@ -70,22 +70,3 @@
 [Server] 2026/10/25 17:32:40.637138 event=STARTUP addr=localhost:5050 lamport=0
 [Server] 2026/10/25 17:32:53.806436 event=SHUTDOWN addr=localhost:5050 lamport=1
 [Server] 2026/10/25 17:32:53.807446 event=STOPPED
-[Server] 2026/10/25 17:35:00.254416 event=STARTUP addr=localhost:5050 lamport=0
-[Server] 2026/10/25 17:35:09.531547 event=CONNECT client=david lamport=2
-[Server] 2026/10/25 17:35:09.531730 event=BROADCAST kind=JOIN client=david lamport=2
-[Server] 2026/10/25 17:35:09.532396 event=SEND to=david from=Server lamport=2 msg="Participant david joined Chit Chat at logical time 2"
-[Server] 2026/10/25 17:35:27.920203 event=CONNECT client=hanibal lamport=3
-[Server] 2026/10/25 17:35:27.920695 event=BROADCAST kind=JOIN client=hanibal lamport=3
-[Server] 2026/10/25 17:35:27.921018 event=SEND to=hanibal from=Server lamport=3 msg="Participant hanibal joined Chit Chat at logical time 3"
-[Server] 2026/10/25 17:35:27.921116 event=SEND to=david from=Server lamport=3 msg="Participant hanibal joined Chit Chat at logical time 3"
-[Server] 2026/10/25 17:35:30.003487 event=RECEIVE from=hanibal lamport=6 msg="hello"
-[Server] 2026/10/25 17:35:30.038945 event=BROADCAST kind=MESSAGE client=hanibal lamport=6
-[Server] 2026/10/25 17:35:30.039234 event=SEND to=david from=hanibal lamport=6 msg="hello"
-[Server] 2026/10/25 17:35:30.039302 event=SEND to=hanibal from=hanibal lamport=6 msg="hello"
-[Server] 2026/10/25 17:35:32.086009 event=DISCONNECT client=hanibal lamport=7
-[Server] 2026/10/25 17:35:32.086282 event=BROADCAST kind=LEAVE client=hanibal lamport=7
-[Server] 2026/10/25 17:35:32.086446 event=SEND to=david from=Server lamport=7 msg="Participant hanibal left Chit Chat at logical time 7"
-[Server] 2026/10/25 17:35:45.738639 event=DISCONNECT client=david lamport=8
-[Server] 2026/10/25 17:35:45.738825 event=BROADCAST kind=LEAVE client=david lamport=8
-[Server] 2026/10/25 17:35:48.731388 event=SHUTDOWN addr=localhost:5050 lamport=9
-[Server] 2026/10/25 17:35:48.733192 event=STOPPED
